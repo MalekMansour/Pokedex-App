@@ -48,12 +48,12 @@ class _HomeState extends State<Home> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assistant),
-            label: 'AI',
+            icon: Icon(Icons.local_fire_department), // Change icon here
+            label: 'Moves',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Favorites',
+            icon: Icon(Icons.assistant_photo), // Change icon here
+            label: 'AI',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
