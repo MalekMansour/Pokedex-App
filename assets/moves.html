@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Moves</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #1e1e1e, #343434);
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+
+        #container {
+            width: 400px;
+            height: 700px;
+            padding: 20px;
+            border: 5px solid #98180c;
+            background-color: rgb(232, 232, 232);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .top-bar {
+            background-color: #98180c;
+            height: 60px;
+            width: 120%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .top-bar img {
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        .poke-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 10px;
+            width: 100%;
+            overflow-y: scroll;
+        }
+
+        .poke-card {
+            width: calc(33.33% - 10px);
+            margin-bottom: 20px;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #333;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .poke-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .poke-name {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .poke-info {
+            font-size: 12px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            border-radius: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #98180c;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #98180c;
+        }
+
+        #search-bar{
+            border-radius: 4px;
+            border-color: #98180c;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="top-bar">
+        <img src="images/pokedex-name.png" alt="Pokedex Logo">
+        <!-- Search bar -->
+        <input type="text" id="search-bar" placeholder="Search Move...">
+    </div>
+    <div class="poke-container" id="poke-container">
+        <!-- Pokemon Moves will be generated here -->
+    </div>
+</div>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var pokeContainer = document.getElementById("poke-container");
+            var searchBar = document.getElementById("search-bar");
+
+            for (var i = 1; i <= 844; i++) { // Adjusted to the maximum move ID in the API
+                fetchMoveData(i);
+            }
+
+            function fetchMoveData(id) {
+                fetch(`https://pokeapi.co/api/v2/move/${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        var card = document.createElement("div");
+                        card.className = "poke-card";
+                        card.style.backgroundColor = getTypeColor(data.type.name); // Set background color based on move type
+                        card.innerHTML = `
+                            <div class="poke-name">${capitalizeFirstLetter(data.name)}</div>
+                            <div class="poke-info">ID: ${id}</div>
+                            <div class="poke-info">Type: ${capitalizeFirstLetter(data.type.name)}</div>
+                            <div class="poke-info">PP: ${data.pp}</div>
+                            <div class="poke-info">Power: ${data.power || '-'}</div>
+                            <div class="poke-info">Accuracy: ${data.accuracy || '-'}</div>
+                        `;
+                        pokeContainer.appendChild(card);
+
+                        // Add click event listener to each move card
+                        card.addEventListener("click", function() {
+                            var moveName = this.querySelector(".poke-name").textContent.toLowerCase();
+                            window.location.href = `move_details.html?name=${moveName}`; // Redirect to move details page
+                        });
+                    });
+            }
+
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+
+            // Search functionality
+            searchBar.addEventListener("input", function() {
+                var searchTerm = searchBar.value.toLowerCase();
+                var cards = document.querySelectorAll(".poke-card");
+                cards.forEach(card => {
+                    var moveName = card.querySelector(".poke-name").textContent.toLowerCase();
+                    if (moveName.includes(searchTerm)) {
+                        card.style.display = "block";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+
+            // Function to get color for each move type
+            function getTypeColor(type) {
+                switch (type) {
+                    case "normal":
+                        return "#AAB09F";
+                    case "fire":
+                        return "#EA7A3C";
+                    case "water":
+                        return "#539AE2";
+                    case "electric":
+                        return "#E5C531";
+                    case "grass":
+                        return "#71C558";
+                    case "ice":
+                        return "#70CBD4";
+                    case "fighting":
+                        return "#CB5F48";
+                    case "poison":
+                        return "#B468B7";
+                    case "ground":
+                        return "#CC9F4F";
+                    case "flying":
+                        return "#7DA6DE";
+                    case "psychic":
+                        return "#E5709B";
+                    case "bug":
+                        return "#94BC4A";
+                    case "rock":
+                        return "#B2A061";
+                    case "ghost":
+                        return "#846AB6";
+                    case "dragon":
+                        return "#6A7BAF";
+                    case "dark":
+                        return "#736C75";
+                    case "steel":
+                        return "#89A1B0";
+                    case "fairy":
+                        return "#E397D1";
+                    default:
+                        return "#000000"; // Default color
+                }
+            }
+        });
+    </script>
+</body>
+</html>
