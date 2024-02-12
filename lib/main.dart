@@ -23,8 +23,8 @@ class _HomeState extends State<Home> {
 
   final List<String> _urls = [
     'assets/index.html',
+    'assets/moves.html',
     'assets/assistant.html',
-    'assets/favorite.html',
     'assets/settings.html',
   ];
 
