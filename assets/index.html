@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #1e1e1e, #343434);
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #container {
+            width: 400px;
+            height: 700px;
+            padding: 20px;
+            border: 5px solid;
+            border-color: rgb(29, 29, 29);
+            background-color: rgba(29, 29, 29, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .post {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #555;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .post:last-child {
+            border-bottom: none;
+        }
+
+        .post:hover {
+            background-color: #333;
+        }
+
+        .post-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .post-content {
+            font-size: 14px;
+            color: #aaa;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .post.open .post-content {
+            max-height: 1000px;
+        }
+
+        .community {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #aaa;
+        }
+
+        .button {
+            background-color: #444;
+            color: #ccc;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .pin-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #444;
+            color: #ccc;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .pin-button:hover {
+            background-color: #555;
+        }
+
+        .pinned {
+            background-color: #222;
+        }
+
+        .pinned .pin-button {
+            background-color: #888;
+            visibility: hidden;
+        }
+
+        .pinned .pin-button::after {
+            content: "Pinned";
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="post" onclick="togglePost(this)">
+        <div class="post-title">Welcome to Dark Mode Reddit!</div>
+        <button class="pin-button" onclick="pinPost(this)">Pin</button>
+        <div class="post-content">This is a sample post in dark mode. Click to expand.</div>
+    </div>
+    <div class="post" onclick="togglePost(this)">
+        <div class="post-title">Second Post</div>
+        <button class="pin-button" onclick="pinPost(this)">Pin</button>
+        <div class="post-content">Another example post in dark mode. Click to expand.</div>
+    </div>
+    <div class="post" onclick="togglePost(this)">
+        <div class="post-title">Third Post</div>
+        <button class="pin-button" onclick="pinPost(this)">Pin</button>
+        <div class="post-content">Yet another example post. Click to expand.</div>
+    </div>
+    <div class="post" onclick="togglePost(this)">
+        <div class="post-title">Fourth Post</div>
+        <button class="pin-button" onclick="pinPost(this)">Pin</button>
+        <div class="post-content">Yet another example post. Click to expand.</div>
+    </div>
+
+</div>
+
+<script>
+        function togglePost(post) {
+            post.classList.toggle('open');
+        }
+
+        function pinPost(postButton) {
+            const post = postButton.closest('.post');
+            const container = document.getElementById('container');
+            const pinnedPost = document.querySelector('.pinned');
+
+            if (post.classList.contains('pinned')) {
+                post.classList.remove('pinned');
+                container.appendChild(post);
+            } else {
+                post.classList.add('pinned');
+                container.insertBefore(post, container.firstChild.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>
