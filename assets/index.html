@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community</title>
+    <title>Pokedex</title>
     <style>
         body {
             background: linear-gradient(to right, #1e1e1e, #343434);
@@ -15,148 +15,218 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            overflow-y: scroll; /* Enable vertical scrolling */
         }
 
         #container {
             width: 400px;
             height: 700px;
             padding: 20px;
-            border: 5px solid;
-            border-color: rgb(29, 29, 29);
-            background-color: rgba(29, 29, 29, 0.9);
+            border: 5px solid #98180c;
+            background-color: rgb(232, 232, 232);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
             overflow: hidden;
         }
 
-        .post {
-            padding: 10px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #555;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .post:last-child {
-            border-bottom: none;
-        }
-
-        .post:hover {
-            background-color: #333;
-        }
-
-        .post-title {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-
-        .post-content {
-            font-size: 14px;
-            color: #aaa;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .post.open .post-content {
-            max-height: 1000px;
-        }
-
-        .community {
+        .top-bar {
+            background-color: #98180c;
+            height: 60px;
+            width: 120%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 10px;
-            font-size: 20px;
-            color: #aaa;
         }
 
-        .button {
-            background-color: #444;
-            color: #ccc;
-            border: none;
-            padding: 8px 16px;
+        .top-bar img {
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        .poke-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 10px;
+            width: 100%;
+            overflow-y: scroll;
+        }
+
+        .poke-card {
+            width: calc(33.33% - 10px);
+            margin-bottom: 20px;
             border-radius: 5px;
-            cursor: pointer;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #333;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease;
+            text-decoration: none;
         }
 
-        .button:hover {
-            background-color: #555;
+        .poke-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        .pin-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #444;
-            color: #ccc;
-            border: none;
-            padding: 5px 10px;
+        .poke-img {
+            width: 100%;
+            height: auto;
             border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
-        .pin-button:hover {
-            background-color: #555;
+        .poke-name {
+            font-weight: bold;
+            margin: 5px 0;
         }
 
-        .pinned {
-            background-color: #222;
+        .poke-info {
+            font-size: 12px;
         }
 
-        .pinned .pin-button {
-            background-color: #888;
-            visibility: hidden;
+        ::-webkit-scrollbar {
+            width: 10px;
+            border-radius: 10px;
         }
 
-        .pinned .pin-button::after {
-            content: "Pinned";
-            visibility: visible;
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #98180c;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #98180c;
+        }
+
+        #search-bar{
+            border-radius: 4px;
+            border-color: #98180c;
+            height: 20px;
         }
     </style>
 </head>
 <body>
 <div id="container">
-    <div class="post" onclick="togglePost(this)">
-        <div class="post-title">Welcome to Dark Mode Reddit!</div>
-        <button class="pin-button" onclick="pinPost(this)">Pin</button>
-        <div class="post-content">This is a sample post in dark mode. Click to expand.</div>
+    <div class="top-bar">
+        <img src="images/pokedex-name.png" alt="Pokedex Logo">
+        <!-- Search bar -->
+        <input type="text" id="search-bar" placeholder="Search Pokemon...">
     </div>
-    <div class="post" onclick="togglePost(this)">
-        <div class="post-title">Second Post</div>
-        <button class="pin-button" onclick="pinPost(this)">Pin</button>
-        <div class="post-content">Another example post in dark mode. Click to expand.</div>
+    <div class="poke-container" id="poke-container">
+        <!-- Pokemon Cards will be generated here -->
     </div>
-    <div class="post" onclick="togglePost(this)">
-        <div class="post-title">Third Post</div>
-        <button class="pin-button" onclick="pinPost(this)">Pin</button>
-        <div class="post-content">Yet another example post. Click to expand.</div>
-    </div>
-    <div class="post" onclick="togglePost(this)">
-        <div class="post-title">Fourth Post</div>
-        <button class="pin-button" onclick="pinPost(this)">Pin</button>
-        <div class="post-content">Yet another example post. Click to expand.</div>
-    </div>
-
 </div>
 
 <script>
-        function togglePost(post) {
-            post.classList.toggle('open');
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            var pokeContainer = document.getElementById("poke-container");
+            var searchBar = document.getElementById("search-bar");
 
-        function pinPost(postButton) {
-            const post = postButton.closest('.post');
-            const container = document.getElementById('container');
-            const pinnedPost = document.querySelector('.pinned');
-
-            if (post.classList.contains('pinned')) {
-                post.classList.remove('pinned');
-                container.appendChild(post);
-            } else {
-                post.classList.add('pinned');
-                container.insertBefore(post, container.firstChild.nextSibling);
+            for (var i = 1; i <= 1025; i++) {
+                fetchPokemonData(i);
             }
-        }
+
+            function fetchPokemonData(id) {
+                fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        var pokemonNumber = pad(id, 3);
+                        var card = document.createElement("a");
+                        card.className = "poke-card";
+                        card.href = `pokemon.html?id=${id}`; // Set href attribute for redirection
+                        card.style.backgroundColor = getColorForType(data.types[0].type.name); // Set background color based on the first type
+                        card.innerHTML = `
+                            <img class="poke-img" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${pokemonNumber}.png" alt="Pokemon ${id}">
+                            <div class="poke-name">${capitalizeFirstLetter(data.name)}</div>
+                            <div class="poke-info">#${pokemonNumber}</div>
+                        `;
+                        pokeContainer.appendChild(card);
+                    });
+            }
+
+            function pad(num, size) {
+                var s = num + "";
+                while (s.length < size) s = "0" + s;
+                return s;
+            }
+
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+
+            // https://www.pokemonaaah.net/artsyfartsy/colordex/
+            function getColorForType(type) {
+                switch (type) {
+                    case "normal":
+                        return "#AAB09F";
+                    case "fire":
+                        return "#EA7A3C";
+                    case "water":
+                        return "#539AE2";
+                    case "electric":
+                        return "#E5C531";
+                    case "grass":
+                        return "#71C558";
+                    case "ice":
+                        return "#70CBD4";
+                    case "fighting":
+                        return "#CB5F48";
+                    case "poison":
+                        return "#B468B7";
+                    case "ground":
+                        return "#CC9F4F";
+                    case "flying":
+                        return "#7DA6DE";
+                    case "psychic":
+                        return "#E5709B";
+                    case "bug":
+                        return "#94BC4A";
+                    case "rock":
+                        return "#B2A061";
+                    case "ghost":
+                        return "#846AB6";
+                    case "dragon":
+                        return "#6A7BAF";
+                    case "dark":
+                        return "#736C75";
+                    case "steel":
+                        return "#89A1B0";
+                    case "fairy":
+                        return "#E397D1";
+                    default:
+                        return "#000000"; // Default color
+                }
+            }
+
+            // Search functionality
+            searchBar.addEventListener("input", function() {
+                var searchTerm = searchBar.value.toLowerCase();
+                var cards = document.querySelectorAll(".poke-card");
+                cards.forEach(card => {
+                    var pokemonName = card.querySelector(".poke-name").textContent.toLowerCase();
+                    if (pokemonName.includes(searchTerm)) {
+                        card.style.display = "block";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
