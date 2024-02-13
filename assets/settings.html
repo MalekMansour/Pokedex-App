@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex - Settings</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #1e1e1e, #343434);
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+
+        .container {
+            width: 400px;
+            height: 700px;
+            padding: 20px;
+            border: 5px solid #98180c;
+            background-color: rgb(232, 232, 232);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .top-bar {
+            background-color: #98180c;
+            height: 60px;
+            width: 120%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .top-bar img {
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        #search-bar {
+            border-radius: 4px;
+            border-color: #98180c;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            background-color: #98180c;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .bottom-nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+        }
+
+        .bottom-nav img{
+            width: 30px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top-bar">
+        <img src="images/pokedex-name.png" alt="Pokedex Logo">
+    </div>
+    <div>
+        <!-- Your settings content goes here -->
+        <h2>Settings</h2>
+        <p>This is your settings page. You can customize your preferences here.</p>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <img src="images/pokeball-img.png" alt="Home">
+        </a>
+        <a href="moves.html" class="bottom-nav-item">
+            <img src="images/moves_img.png" alt="Moves">
+        </a>
+        <a href="chatbot.html" class="bottom-nav-item">
+            <img src="images/ai_img.png" alt="AI">
+        </a>
+        <a href="settings.html" class="bottom-nav-item">
+            <img src="images/settings_img.png" alt="Settings">
+        </a>
+    </div>
+</div>
+</body>
+</html>
