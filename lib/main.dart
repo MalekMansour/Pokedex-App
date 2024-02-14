@@ -19,51 +19,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-
-  final List<String> _urls = [
+  List<String> _urls = [
     'assets/index.html',
     'assets/moves.html',
-    'assets/assistant.html',
+    'assets/pokemon.html',
+    'assets/move_details.html',
     'assets/settings.html',
+    'assets/chatbot.html',
   ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('App'),
+        title: Text('Webview Example'),
       ),
-      body: WebViewPage(initialUrl: _urls[_selectedIndex]),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_fire_department), // Change icon here
-            label: 'Moves',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assistant_photo), // Change icon here
-            label: 'AI',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFF552980),
-        unselectedItemColor: Color(0xFF5D526C),
-        onTap: _onItemTapped,
+      body: ListView.builder(
+        itemCount: _urls.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text('Open ${_urls[index].split('/').last}'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => WebViewPage(initialUrl: _urls[index]),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
