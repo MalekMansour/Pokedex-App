@@ -22,13 +22,13 @@
             width: 400px;
             height: 700px;
             padding: 20px;
-            border: 5px solid #98180c;
+            border: 5px solid #98180c; 
             background-color: rgb(232, 232, 232);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-radius: 10px;
+            border-radius: 10px; 
             overflow: hidden;
             position: relative;
         }
@@ -37,8 +37,8 @@
             background-color: #98180c;
             height: 60px;
             width: 120%;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            border-top-left-radius: 10px; 
+            border-top-right-radius: 10px; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -46,7 +46,7 @@
         }
 
         .top-bar img {
-            height: 60px;
+            height: 60px; 
             margin-right: 10px;
         }
 
@@ -56,11 +56,11 @@
             justify-content: space-between;
             padding: 10px;
             width: 100%;
-            overflow-y: scroll;
+            overflow-y: scroll; 
         }
 
         .poke-card {
-            width: calc(33.33% - 10px);
+            width: calc(33.33% - 10px); 
             margin-bottom: 20px;
             border-radius: 5px;
             padding: 10px;
@@ -69,7 +69,7 @@
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease;
-            text-decoration: none;
+            text-decoration: none; 
         }
 
         .poke-card:hover {
@@ -88,24 +88,24 @@
 
         ::-webkit-scrollbar {
             width: 10px;
-            border-radius: 10px;
+            border-radius: 10px; 
         }
 
         /* Track */
         ::-webkit-scrollbar-track {
             background: #f1f1f1;
-            border-radius: 10px;
+            border-radius: 10px; 
         }
 
         /* Handle */
         ::-webkit-scrollbar-thumb {
-            background: #98180c;
-            border-radius: 10px;
+            background: #98180c; 
+            border-radius: 10px; 
         }
 
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
-            background: #98180c;
+            background: #98180c; 
         }
 
         #search-bar{
@@ -143,34 +143,34 @@
     </style>
 </head>
 <body>
-<div id="container">
-    <div class="top-bar">
-        <img src="images/pokedex-name.png" alt="Pokedex Logo">
-        <!-- Search bar -->
-        <input type="text" id="search-bar" placeholder="Search Move...">
-    </div>
-    <div class="poke-container" id="poke-container">
-        <!-- Pokemon Moves will be generated here -->
+    <div id="container">
+        <div class="top-bar">
+            <img src="images/pokedex-name.png" alt="Pokedex Logo">
+            <!-- Search bar -->
+            <input type="text" id="search-bar" placeholder="Search Move...">
+        </div>
+        <div class="poke-container" id="poke-container">
+            <!-- Pokemon Moves will be generated here -->
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+        <div class="bottom-nav">
+            <a href="index.html" class="bottom-nav-item">
+                <img src="images/pokeball-img.png" alt="Home">
+            </a>
+            <a href="moves.html" class="bottom-nav-item">
+                <img src="images/moves_img.png" alt="Moves">
+            </a>
+            <a href="chatbot.html" class="bottom-nav-item">
+                <img src="images/ai_img.png" alt="AI">
+            </a>
+            <a href="settings.html" class="bottom-nav-item">
+                <img src="images/settings_img.png" alt="Settings">
+            </a>
+        </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
-    <div class="bottom-nav">
-        <a href="index.html" class="bottom-nav-item">
-            <img src="images/pokeball-img.png" alt="Home">
-        </a>
-        <a href="moves.html" class="bottom-nav-item">
-            <img src="images/moves_img.png" alt="Moves">
-        </a>
-        <a href="chatbot.html" class="bottom-nav-item">
-            <img src="images/ai_img.png" alt="AI">
-        </a>
-        <a href="settings.html" class="bottom-nav-item">
-            <img src="images/settings_img.png" alt="Settings">
-        </a>
-    </div>
-</div>
-
-<script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             var pokeContainer = document.getElementById("poke-container");
             var searchBar = document.getElementById("search-bar");
@@ -183,7 +183,7 @@
                 fetch(`https://pokeapi.co/api/v2/move/${id}`)
                     .then(response => response.json())
                     .then(data => {
-                        var card = document.createElement("div");
+                        var card = document.createElement("div"); 
                         card.className = "poke-card";
                         card.style.backgroundColor = getTypeColor(data.type.name); // Set background color based on move type
                         card.innerHTML = `
