@@ -7,7 +7,7 @@
     <style>
         body {
             background: linear-gradient(to right, #1e1e1e, #343434);
-            color: #000;
+            color: #000; 
             margin: 0;
             padding: 0;
             font-family: 'Lato', sans-serif;
@@ -21,13 +21,13 @@
             width: 400px;
             height: 700px;
             padding: 20px;
-            border: 5px solid #98180c;
+            border: 5px solid #98180c; 
             background-color: rgb(232, 232, 232);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-radius: 10px;
+            border-radius: 10px; 
             overflow: hidden;
             position: relative;
         }
@@ -36,8 +36,8 @@
             background-color: #98180c;
             height: 60px;
             width: 120%;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            border-top-left-radius: 10px; 
+            border-top-right-radius: 10px; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -45,7 +45,7 @@
         }
 
         .top-bar img {
-            height: 60px;
+            height: 60px; 
             margin-right: 10px;
         }
 
@@ -58,8 +58,8 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             width: 90%;
             max-width: 350px;
-            animation-duration: 0.5s;
-            animation-fill-mode: both;
+            animation-duration: 0.5s; 
+            animation-fill-mode: both; 
         }
 
         .poke-img-container {
@@ -67,7 +67,7 @@
             border-radius: 10px;
             margin-bottom: 10px;
             display: inline-block;
-            overflow: hidden;
+            overflow: hidden; 
         }
 
         .poke-img {
@@ -128,37 +128,37 @@
     </style>
 </head>
 <body>
-<div id="container">
-    <div class="top-bar">
-        <img src="images/pokedex-name.png" alt="Pokedex Logo">
-    </div>
-    <div class="poke-details" id="poke-details">
-        <!-- Pokemon details will be displayed here -->
-    </div>
-    <!-- Navigation arrows -->
-    <div class="nav-arrows">
-        <span class="nav-arrow" id="prev">&lt;</span>
-        <span class="nav-arrow" id="next">&gt;</span>
+    <div id="container">
+        <div class="top-bar">
+            <img src="images/pokedex-name.png" alt="Pokedex Logo">
+        </div>
+        <div class="poke-details" id="poke-details">
+            <!-- Pokemon details will be displayed here -->
+        </div>
+        <!-- Navigation arrows -->
+        <div class="nav-arrows">
+            <span class="nav-arrow" id="prev">&lt;</span>
+            <span class="nav-arrow" id="next">&gt;</span>
+        </div>
+        
+        <!-- Bottom Navigation Bar -->
+        <div class="bottom-nav">
+            <a href="index.html" class="bottom-nav-item">
+                <img src="images/pokeball-img.png" alt="Home">
+            </a>
+            <a href="moves.html" class="bottom-nav-item">
+                <img src="images/moves_img.png" alt="Moves">
+            </a>
+            <a href="chatbot.html" class="bottom-nav-item">
+                <img src="images/ai_img.png" alt="AI">
+            </a>
+            <a href="settings.html" class="bottom-nav-item">
+                <img src="images/settings_img.png" alt="Settings">
+            </a>
+        </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
-    <div class="bottom-nav">
-        <a href="index.html" class="bottom-nav-item">
-            <img src="images/pokeball-img.png" alt="Home">
-        </a>
-        <a href="moves.html" class="bottom-nav-item">
-            <img src="images/moves_img.png" alt="Moves">
-        </a>
-        <a href="chatbot.html" class="bottom-nav-item">
-            <img src="images/ai_img.png" alt="AI">
-        </a>
-        <a href="settings.html" class="bottom-nav-item">
-            <img src="images/settings_img.png" alt="Settings">
-        </a>
-    </div>
-</div>
-
-<script>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             let currentPokemonId = parseInt(getUrlParams().id) || 1;
             let pokeDetailsContainer = document.getElementById("poke-details");
@@ -167,7 +167,7 @@
 
             // Swipe functionality
             let startX;
-            let deltaXThreshold = 50;
+            let deltaXThreshold = 50; 
 
             document.addEventListener('touchstart', function(event) {
                 startX = event.touches[0].clientX;
