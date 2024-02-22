@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Details</title>
+    <title>Pokedex - Settings</title>
     <style>
         body {
             background: linear-gradient(to right, #1e1e1e, #343434);
-            color: #000; 
+            color: #0a0a0a;
             margin: 0;
             padding: 0;
             font-family: 'Lato', sans-serif;
@@ -15,9 +15,10 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            overflow-y: scroll; /* Enable vertical scrolling */
         }
 
-        #container {
+        .container {
             width: 400px;
             height: 700px;
             padding: 20px;
@@ -49,54 +50,24 @@
             margin-right: 10px;
         }
 
-        .poke-details {
-            margin-top: 20px;
+        .wiki-links {
             text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            width: 90%;
-            max-width: 350px;
-            animation-duration: 0.5s; 
-            animation-fill-mode: both; 
         }
 
-        .poke-img-container {
-            width: 100%;
-            border-radius: 10px;
+        .wiki-links a {
+            display: block;
             margin-bottom: 10px;
-            display: inline-block;
-            overflow: hidden; 
-        }
-
-        .poke-img {
-            width: 300px;
-            height: auto;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            background-color: #98180c;
+            padding: 10px 20px;
             border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
-        .poke-name {
-            font-weight: bold;
-            margin: 10px 0;
-            font-size: 24px;
-        }
-
-        .poke-info {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        .nav-arrows {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .nav-arrow {
-            cursor: pointer;
-            font-size: 24px;
+        .wiki-links a:hover {
+            background-color: #7a1209;
         }
 
         /* Bottom Navigation Bar */
@@ -128,19 +99,22 @@
     </style>
 </head>
 <body>
-    <div id="container">
+    <div class="container">
         <div class="top-bar">
             <img src="images/pokedex-name.png" alt="Pokedex Logo">
         </div>
-        <div class="poke-details" id="poke-details">
-            <!-- Pokemon details will be displayed here -->
+        <div class="wiki-links">
+            <h2>Pokemon Wikis</h2>
+            <a href="https://www.pokemon.com/us/pokedex/" target="_blank">Official Pokémon Pokedex</a>
+            <a href="https://pokemondb.net/pokedex/national" target="_blank">Pokémon Database</a>
+            <a href="https://pokemondb.net/location" target="_blank">Pokémon Location guide</a>
+            <a href="https://pokemondb.net/move/all" target="_blank">Pokémon move list</a>
+            <a href="https://pokemondb.net/mechanics/natures" target="_blank">Pokémon Natures</a>
+            <a href="https://bulbapedia.bulbagarden.net/wiki/Main_Page" target="_blank">Bulbapedia</a>
+            <a href="https://www.serebii.net/" target="_blank">Serebii</a>
+            <a href="https://pokeapi.co/docs/v2#info" target="_blank">PokeAPI</a>
         </div>
-        <!-- Navigation arrows -->
-        <div class="nav-arrows">
-            <span class="nav-arrow" id="prev">&lt;</span>
-            <span class="nav-arrow" id="next">&gt;</span>
-        </div>
-        
+
         <!-- Bottom Navigation Bar -->
         <div class="bottom-nav">
             <a href="index.html" class="bottom-nav-item">
@@ -157,147 +131,5 @@
             </a>
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let currentPokemonId = parseInt(getUrlParams().id) || 1;
-            let pokeDetailsContainer = document.getElementById("poke-details");
-
-            fetchPokemonDetails(currentPokemonId);
-
-            // Swipe functionality
-            let startX;
-            let deltaXThreshold = 50; 
-
-            document.addEventListener('touchstart', function(event) {
-                startX = event.touches[0].clientX;
-            }, false);
-
-            document.addEventListener('touchend', function(event) {
-                const endX = event.changedTouches[0].clientX;
-                const deltaX = endX - startX;
-
-                if (deltaX > deltaXThreshold) {
-                    // Swipe right
-                    currentPokemonId = Math.max(1, currentPokemonId - 1);
-                    fetchPokemonDetails(currentPokemonId);
-                    pokeDetailsContainer.classList.remove("slide-in-left");
-                    pokeDetailsContainer.classList.add("slide-in-right");
-                } else if (deltaX < -deltaXThreshold) {
-                    // Swipe left
-                    currentPokemonId = Math.min(1025, currentPokemonId + 1);
-                    fetchPokemonDetails(currentPokemonId);
-                    pokeDetailsContainer.classList.remove("slide-in-right");
-                    pokeDetailsContainer.classList.add("slide-in-left");
-                }
-            }, false);
-
-            document.getElementById("prev").addEventListener("click", () => {
-                currentPokemonId = Math.max(1, currentPokemonId - 1);
-                fetchPokemonDetails(currentPokemonId);
-                pokeDetailsContainer.classList.remove("slide-in-left");
-                pokeDetailsContainer.classList.add("slide-in-right");
-            });
-
-            document.getElementById("next").addEventListener("click", () => {
-                currentPokemonId = Math.min(1025, currentPokemonId + 1);
-                fetchPokemonDetails(currentPokemonId);
-                pokeDetailsContainer.classList.remove("slide-in-right");
-                pokeDetailsContainer.classList.add("slide-in-left");
-            });
-
-            function fetchPokemonDetails(id) {
-                Promise.all([
-                    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`),
-                    fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
-                ])
-                .then(responses => Promise.all(responses.map(response => response.json())))
-                .then(([pokemonData, speciesData]) => {
-                    var pokemonNumber = pad(id, 3);
-                    pokeDetailsContainer.innerHTML = `
-                        <div class="poke-img-container" style="background-color: ${getColorForType(pokemonData.types[0].type.name)}">
-                            <img class="poke-img" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${pokemonNumber}.png" alt="${pokemonData.name}">
-                        </div>
-                        <div class="poke-name">${capitalizeFirstLetter(pokemonData.name)}</div>
-                        <div class="poke-info">ID: ${id}</div>
-                        <div class="poke-info">Types: ${getPokemonTypes(pokemonData.types)}</div>
-                        <div class="poke-info">Description: ${getDescription(speciesData.flavor_text_entries)}</div>
-                    `;
-                });
-            }
-
-            function capitalizeFirstLetter(string) {
-                return string.charAt(0).toUpperCase() + string.slice(1);
-            }
-
-            function getPokemonTypes(types) {
-                return types.map(type => capitalizeFirstLetter(type.type.name)).join(', ');
-            }
-
-            function getDescription(flavorTextEntries) {
-                // Find the English flavor text entry
-                const englishEntry = flavorTextEntries.find(entry => entry.language.name === 'en');
-                return englishEntry ? englishEntry.flavor_text.replace(/(\r\n|\n|\r)/gm, " ") : 'Description not available';
-            }
-
-            function pad(num, size) {
-                var s = num + "";
-                while (s.length < size) s = "0" + s;
-                return s;
-            }
-
-            function getUrlParams() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const params = {};
-                for (const [key, value] of urlParams) {
-                    params[key] = value;
-                }
-                return params;
-            }
-
-            function getColorForType(type) {
-                switch (type) {
-                    case "normal":
-                        return "#AAB09F";
-                    case "fire":
-                        return "#EA7A3C";
-                    case "water":
-                        return "#539AE2";
-                    case "electric":
-                        return "#E5C531";
-                    case "grass":
-                        return "#71C558";
-                    case "ice":
-                        return "#70CBD4";
-                    case "fighting":
-                        return "#CB5F48";
-                    case "poison":
-                        return "#B468B7";
-                    case "ground":
-                        return "#CC9F4F";
-                    case "flying":
-                        return "#7DA6DE";
-                    case "psychic":
-                        return "#E5709B";
-                    case "bug":
-                        return "#94BC4A";
-                    case "rock":
-                        return "#B2A061";
-                    case "ghost":
-                        return "#846AB6";
-                    case "dragon":
-                        return "#6A7BAF";
-                    case "dark":
-                        return "#736C75";
-                    case "steel":
-                        return "#89A1B0";
-                    case "fairy":
-                        return "#E397D1";
-                    default:
-                        return "#000000"; // Default color
-                }
-            }
-        });
-    </script>
 </body>
 </html>
