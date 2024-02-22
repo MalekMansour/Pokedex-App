@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+  <title>Pokedex AI Chatbot</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #1e1e1e, #343434);
+      color: #1e1e1e;
+      margin: 0;
+      padding: 0;
+      font-family: 'Lato', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #chat-container {
+      width: 400px;
+      height: 700px;
+      padding: 20px;
+      border: 5px solid #98180c;
+      background-color: rgb(232, 232, 232);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative; /* Added to position the bottom navigation bar */
+    }
+
+    .top-bar {
+      background-color: #98180c;
+      height: 60px;
+      width: 120%;
+      border-top-left-radius: 10px; 
+      border-top-right-radius: 10px; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .top-bar img {
+      height: 60px; 
+      margin-right: 10px;
+    }
+
+
+    #category-bar {
+      background: #98180c;
+      border-radius: 12px;
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      margin-bottom: 10px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .category-button {
+      background: none;
+      border: none;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+      padding: 5px;
+      transition: color 0.3s ease;
+    }
+
+    .category-button:hover {
+      color: #fff;
+    }
+
+    #chat-log {
+      overflow-y: auto;
+      margin-bottom: 10px;
+      padding-right: 10px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      height: 360px;
+    }
+
+    #chat-log::-webkit-scrollbar,
+    #category-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    input {
+      height: 40px;
+      width: calc(100% - 45px);
+      background: #ccc;
+      color: #1e1e1e;
+      border: none;
+      border-radius: 4px;
+      margin-top: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    button#send-button {
+      height: 40px;
+      margin-top: 5px;
+      width: calc(100% - 45px);
+      background: #98180c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 14px;
+    }
+
+    button#send-button:hover {
+      background: #d22d1e;
+    }
+
+    #cooldown-message,
+    #error-message,
+    #typing-indicator,
+    #welcome-message {
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+      font-size: 24px;
+      color: #1e1e1e;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+      #chat-container {
+        max-width: 90%;
+      }
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      background-color: #98180c;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: space-around;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .bottom-nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+    }
+
+    .bottom-nav img{
+      width: 30px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div id="chat-container">
+  <div class="top-bar">
+    <img src="images/pokedex-name.png" alt="Pokedex Logo">
+  </div>
+  <div id="category-bar">
+    <button class="category-button" onclick="changePrompt('Evolutions')">Evolutions</button>
+    <button class="category-button" onclick="changePrompt('Types')">Types</button>
+    <button class="category-button" onclick="changePrompt('Moves')">Moves</button>
+    <button class="category-button" onclick="changePrompt('Abilities')">Abilities</button>
+    <button class="category-button" onclick="changePrompt('Berries')">Berries</button>
+    <button class="category-button" onclick="changePrompt('Legendaries')">Legendaries</button>
+  </div>
+  <div id="welcome-message">Any questions about Pokemon?</div>
+  <div id="chat-log"></div>
+  <div id="typing-indicator"></div>
+  <input type="text" id="user-input" placeholder="Type your message...">
+  <button id="send-button" onclick="sendMessage()">Send</button>
+
+  <!-- Bottom Navigation Bar -->
+  <div class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item">
+      <img src="images/pokeball-img.png" alt="Home">
+    </a>
+    <a href="moves.html" class="bottom-nav-item">
+      <img src="images/moves_img.png" alt="Moves">
+    </a>
+    <a href="chatbot.html" class="bottom-nav-item">
+      <img src="images/ai_img.png" alt="AI">
+    </a>
+    <a href="settings.html" class="bottom-nav-item">
+      <img src="images/settings_img.png" alt="Settings">
+    </a>
+  </div>
+</div>
+
+<script>
+  const openaiApiKey = "MY_APY_KEY";
+  const messages = [];
+  const chatLog = document.getElementById("chat-log");
+  const userInput = document.getElementById("user-input");
+  const typingIndicator = document.getElementById("typing-indicator")
+
+  const systemMsg = `
+  You are the AI of the Pokedex from the Pokémon universe, your primary task is to respond to inquiries solely related to the Pokémon world. 
+  Please ensure that all answers provided are relevant to Pokémon-related questions only. 
+  Additionally, it's crucial to filter out any profanity from both user queries and AI responses, maintaining a respectful and appropriate interaction environment.
+  Keep all your anwsers between 2-3 sentences long. Make sure all your anwsers are accurate.
+  Help the user indentify which pokemons are on which routes on which games the user is playing on.
+  Give them the percentage of chances of that pokemon spawning as well.
+  `;
+
+  messages.push({ "role": "system", "content": systemMsg });
+
+  function updateChatLog() {
+    chatLog.innerHTML = messages
+      .filter(msg => msg.role !== "system")
+      .map(msg => `<p><strong>${msg.role}:</strong> ${makeLinksClickable(msg.content)}</p>`)
+      .join('');
+  }
+
+  function removePeriodFromUrl(url) {
+    return url.endsWith('.') ? url.slice(0, -1) : url;
+  }
+
+  function makeLinksClickable(content) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return content.replace(urlRegex, (url) => {
+      const cleanedUrl = removePeriodFromUrl(url);
+      return `<a href="#" onclick="window.open('${cleanedUrl}', '_blank'); return false;">${cleanedUrl}</a>`;
+    });
+  }
+
+  function changePrompt(category) {
+    const userInput = document.getElementById("user-input");
+    userInput.value = `Tell me about the ${category} in Pokemon.`;
+  }
+
+  function showTypingIndicator() {
+    typingIndicator.innerText = "Pokedex is typing...";
+  }
+
+  function hideTypingIndicator() {
+    typingIndicator.innerText = "";
+  }
+
+  function sendMessage() {
+    const userMessage = userInput.value;
+    messages.push({ "role": "user", "content": userMessage });
+
+    showTypingIndicator();
+
+    fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${openaiApiKey}`
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: messages
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      const assistantReply = data.choices[0].message.content;
+      messages.push({ "role": "assistant", "content": assistantReply });
+
+      hideTypingIndicator();
+      updateChatLog();
+    })
+    .catch(error => console.error("Error:", error));
+
+    userInput.value = "";
+  }
+
+  updateChatLog();
+</script>
+</body>
+</html>
