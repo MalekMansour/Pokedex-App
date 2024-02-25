@@ -1,8 +1,8 @@
   # Pokedex
 
-A new Flutter project.
+A new Flutter project for a Pokedex.
 
-## Getting Started
+## Changes need to be made ASAP.
 
 This project is a starting point for a Flutter application.
 
