@@ -12,13 +12,13 @@ Welcome to the Pokedex Web Application! This web application allows users to bro
 
 ## Screenshots
 
-![Screenshot 1](screenshots/screenshot1.png)
+![Screenshot 1](screenshots/ss-pdx1.png)
 *Description of screenshot 1.*
 
-![Screenshot 2](screenshots/screenshot2.png)
+![Screenshot 2](screenshots/ss-pdx2.png)
 *Description of screenshot 2.*
 
-![Screenshot 3](screenshots/screenshot3.png)
+![Screenshot 3](screenshots/ss-pdx3.png)
 *Description of screenshot 3.*
 
 ![Screenshot 4](screenshots/screenshot4.png)
