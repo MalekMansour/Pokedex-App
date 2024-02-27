@@ -21,16 +21,16 @@ Welcome to the Pokedex Web Application! This web application allows users to bro
 ![Screenshot 3](screenshots/ss-pdx3.png)
 *Description of screenshot 3.*
 
-![Screenshot 4](screenshots/screenshot4.png)
+![Screenshot 4](screenshots/ss-pdx4.png)
 *Description of screenshot 4.*
 
-![Screenshot 5](screenshots/screenshot5.png)
+![Screenshot 5](screenshots/ss-pdx5.png)
 *Description of screenshot 5.*
 
-![Screenshot 6](screenshots/screenshot6.png)
+![Screenshot 6](screenshots/ss-pdx6.png)
 *Description of screenshot 6.*
 
-![Screenshot 7](screenshots/screenshot7.png)
+![Screenshot 7](screenshots/ss-pdx7.png)
 *Description of screenshot 7.*
 
 ## Usage
