@@ -10,8 +10,8 @@ Pokedex app built with Flutter
 ## App preview
 
 ![Home](screenshots/ss-pdx1.png)
-![News](screenshots/home-news.png "News")
-![Pokedex](screenshots/pokedex.png "Pokedex")
+![News](screenshots/ss-pdx2.png)
+![Pokedex](screenshots/ss-pdx3.png)
 ![Pokedex FAB](screenshots/pokedex-fab.png "Pokedex FAB")
 ![Pokedex Generation](screenshots/pokedex-fab-generation.png "Pokedex Generation")
 ![Pokemon Info - About](screenshots/pokemon-info-about.png "Pokemon Info - About")
