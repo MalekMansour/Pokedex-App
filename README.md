@@ -12,12 +12,10 @@ Pokedex app built with Flutter
 ![Home](screenshots/ss-pdx1.png)
 ![News](screenshots/ss-pdx2.png)
 ![Pokedex](screenshots/ss-pdx3.png)
-![Pokedex FAB](screenshots/pokedex-fab.png "Pokedex FAB")
-![Pokedex Generation](screenshots/pokedex-fab-generation.png "Pokedex Generation")
-![Pokemon Info - About](screenshots/pokemon-info-about.png "Pokemon Info - About")
-![Pokemon Info - Base Stats](screenshots/pokemon-info-base-stats.png "Pokemon Info - Base Stats")
-![Pokemon Info - Evolution](screenshots/pokemon-info-evolution.png "Pokemon Info - Evolution")
-![Pokemon Info - Base Stats (Expanded)](screenshots/pokemon-info-expanded.png "Pokemon Info - Base Stats (Expanded)")
+![Pokedex FAB](screenshots/ss-pdx4.png)
+![Pokedex Generation](screenshots/ss-pdx5.png)
+![Pokemon Info - About](screenshots/ss-pdx6.png)
+![Pokemon Info - Base Stats](screenshots/ss-pdx7.png)
 
 ## Video demo
 [![Demo](screenshots/thumbnail.png)](https://www.youtube.com/watch?v=qKrFWerjoV8)
