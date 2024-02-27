@@ -33,12 +33,6 @@ Welcome to the Pokedex Web Application! This web application allows users to bro
 ![Screenshot 7](screenshots/screenshot7.png)
 *Description of screenshot 7.*
 
-![Screenshot 8](screenshots/screenshot8.png)
-*Description of screenshot 8.*
-
-![Screenshot 9](screenshots/screenshot9.png)
-*Description of screenshot 9.*
-
 ## Usage
 
 - Upon opening the web application, you'll be presented with a list of Pokemon cards.
