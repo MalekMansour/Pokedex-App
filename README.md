@@ -1,6 +1,6 @@
-# Pokedex Web Application
+# Pokedex Application
 
-Welcome to the Pokedex Web Application! This web application allows users to browse through a collection of Pokemon, view detailed information about each Pokemon, search for specific Pokemon, and access various useful Pokemon-related resources.
+Welcome to the Pokedex Application. The purpose of this Pokedex is to view detailed information about each Pokemon (including their image, name, and ID number). You can also search for a Pokemon's name using the search bar. 
 
 ## Features
 
