@@ -2,7 +2,7 @@
 
 # Pokedex Application
 
-Welcome to the Pokedex Application. The purpose of this Pokedex is to view detailed information about each Pokemon (including their image, name, and ID number). You can also search for a Pokemon's name using the search bar. 
+Welcome to the Pokedex Application. The purpose of this Pokedex is to view detailed information about each Pokemon (including their image, name, and ID number). You can also search for a Pokemon's name using the search bar. The Pokedex is also available through a web application.
 
 ## App preview
 
