@@ -6,20 +6,27 @@ Welcome to the Pokedex Application. The purpose of this Pokedex is to view detai
 
 ## App preview
 
-![Home](screenshots/ss-pdx1.png)
-![News](screenshots/ss-pdx2.png)
-![Pokedex](screenshots/ss-pdx3.png)
-![Pokedex FAB](screenshots/ss-pdx4.png)
-![Pokedex Generation](screenshots/ss-pdx5.png)
-![Pokemon Info - About](screenshots/ss-pdx6.png)
-![Pokemon Info - Base Stats](screenshots/ss-pdx7.png)
+<table>
+  <tr>
+    <td><img src="screenshots/ss-pdx1.png" alt="Home"></td>
+    <td><img src="screenshots/ss-pdx2.png" alt="News"></td>
+    <td><img src="screenshots/ss-pdx3.png" alt="Pokedex"></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/ss-pdx4.png" alt="Pokedex FAB"></td>
+    <td><img src="screenshots/ss-pdx5.png" alt="Pokedex Generation"></td>
+    <td><img src="screenshots/ss-pdx6.png" alt="Pokemon Info - About"></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/ss-pdx7.png" alt="Pokemon Info - Base Stats"></td>
+    <!-- Add more screenshots here if needed -->
+  </tr>
+</table>
 
 ## Installation
 
 - Add [Flutter](https://flutter.dev/docs/get-started/install) to your machine
-
 - Open this project folder with Terminal/CMD and run `flutter packages get`
-
 - Run `flutter run` to build and run the debug app on your emulator/phone
 
 ## Features
