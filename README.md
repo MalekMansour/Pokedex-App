@@ -1,4 +1,7 @@
 [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg)](https://github.com/Solido/awesome-flutter)
+[![HTML](https://img.shields.io/badge/-HTML-red)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![PokeAPI](https://img.shields.io/badge/-PokeAPI-orange)](https://pokeapi.co/)
+
 
 # Pokedex Application
 
