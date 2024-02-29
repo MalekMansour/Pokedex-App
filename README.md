@@ -5,7 +5,7 @@
 
 # Pokedex Application
 
-Welcome to the Pokedex Application. The purpose of this Pokedex is to view detailed information about each Pokemon (including their image, name, and ID number). You can also search for a Pokemon's name using the search bar. You can also search for moves.
+Welcome to the Pokedex Application. The purpose of this Pokedex is to view detailed information about each Pokemon (All 1025 Pokemons) (including their image, name, and ID number). You can also search for a Pokemon's name using the search bar. You can also search for Pokemon Moves (All 844 Moves). There is also an AI Chatbot Avaiable that knows everything about Pokemon. Finally, the Wiki section that includes a lot of important links for pokemon stuff.
 
 ## App preview
 
