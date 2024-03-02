@@ -1,7 +1,7 @@
 [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg)](https://github.com/Solido/awesome-flutter)
 [![HTML](https://img.shields.io/badge/-HTML-red)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![PokeAPI](https://img.shields.io/badge/-PokeAPI-orange)](https://pokeapi.co/)
-[![OpenAI API](https://img.shields.io/badge/OpenAI%20API-green)](https://openai.com/)
+[![OpenAI API](https://img.shields.io/badge/OpenAI%20API-darkgreen)](https://openai.com/)
 
 
 # Pokedex Application
