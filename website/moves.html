@@ -184,7 +184,7 @@
                     .then(data => {
                         var card = document.createElement("div"); 
                         card.className = "poke-card";
-                        card.style.backgroundColor = getTypeColor(data.type.name); // Set background color based on move type
+                        card.style.backgroundColor = getTypeColor(data.type.name); 
                         card.innerHTML = `
                             <div class="poke-name">${capitalizeFirstLetter(data.name)}</div>
                             <div class="poke-info">ID: ${id}</div>
@@ -195,7 +195,6 @@
                         `;
                         pokeContainer.appendChild(card);
 
-                        // Add click event listener to each move card
                         card.addEventListener("click", function() {
                             var moveName = this.querySelector(".poke-name").textContent.toLowerCase();
                             window.location.href = `move_details.html?name=${moveName}`; 
